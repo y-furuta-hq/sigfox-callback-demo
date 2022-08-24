@@ -1,4 +1,4 @@
--- drop table if exists sigfox_data;
+drop table if exists sigfox_data;
 -- drop type if exists callback_type;
 -- CREATE TYPE IF NOT EXISTS callback_type AS ENUM ('data/uplink', 'data/downlink', 'service/geoloc');
 

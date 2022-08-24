@@ -53,7 +53,7 @@ start();
 
 const handlers = {
   home:(request, h)=>{
-    return pool.query("select * from callbacks order by date desc")
+    return pool.query("select * from sigfox_data order by date desc")
     .then(res => {
       return h.view('list',{rows:res.rows});
     })
@@ -79,7 +79,7 @@ const handlers = {
       }).code(200)
     })
     .catch(err => {
-      let msg ="An error occurred while handling the downlink callbacks";
+      let msg ="An error occurred while handling the downlink sigfox_data";
       console.log(msg);
       console.log(err.stack);
       return h.response(msg).code(500);
@@ -88,7 +88,7 @@ const handlers = {
 };
 const insertCallback= (type, request) => {
 
-  const qry = "INSERT INTO callbacks(date, type, device, data, stationId, rssi, duplicate) VALUES(now(), $1, $2, $3, $4, $5, $6) RETURNING id";
+  const qry = "INSERT INTO sigfox_data(date, type, device, data, stationId, rssi, duplicate) VALUES(now(), $1, $2, $3, $4, $5, $6) RETURNING id";
   return pool.query(qry, [type, request.payload.device, request.payload.data, request.payload.station, request.payload.rssi, request.payload.duplicate])
 };
 const recordCallback = (type, request) => {
