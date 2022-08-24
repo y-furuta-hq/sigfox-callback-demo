@@ -1,6 +1,6 @@
 -- drop table if exists sigfox_data;
 -- drop type if exists callback_type;
-CREATE TYPE callback_type AS ENUM ('data/uplink', 'data/downlink', 'service/geoloc') if not exists callback_type;
+CREATE TYPE IF NOT EXISTS callback_type AS ENUM ('data/uplink', 'data/downlink', 'service/geoloc');
 
 create table if not exists callbacks(
   id serial primary key,
