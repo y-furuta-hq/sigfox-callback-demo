@@ -2,7 +2,7 @@ require('./loadConfig.js');
 
 const { Pool, Client } = require('pg');
 const client = new Client({
-  connectionString:process.env.DATABASE_URL
+  connectionString:process.env.DATABASE_URL,
   ssl: true
 });
 const sql = require('fs').readFileSync('./init.sql', {encoding:'utf-8'});
