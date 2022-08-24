@@ -3,7 +3,10 @@ require('./loadConfig.js');
 
 const { Pool, Client } = require('pg')
 var pool = new Pool({
-  connectionString:process.env.DATABASE_URL
+  connectionString:process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 const Hapi = require('@hapi/hapi');
